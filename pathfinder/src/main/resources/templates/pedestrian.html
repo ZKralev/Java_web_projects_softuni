@@ -1,0 +1,27 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Pedestrian</title>
+    <th:block th:include="~{/fragments/head}" />
+</head>
+<body>
+<div class="wrapper">
+    <!-- Navigation -->
+    <th:block th:include="~{fragments/header.html}" />
+
+
+    <section class="road">
+        <div>
+            <h2>Title</h2>
+            <p>Very long description</p>
+            <a href="/" class="btn">Learn More</a>
+        </div>
+        <img class="rounded-circle w-75 ml-5" src="/images/pic1.jpg" alt="Title image">
+    </section>
+</div>
+<!-- Wrapper Ends -->
+</body>
+<th:block th:include="~{fragments/footer}" />
+
+</html>

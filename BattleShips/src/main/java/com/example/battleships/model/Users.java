@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
 import org.hibernate.validator.constraints.Length;
 
 @Entity
+@Table(name = "users")
  public class Users {
   
     @Id
@@ -19,7 +21,7 @@ import org.hibernate.validator.constraints.Length;
 
     @Column(name = "user_name", unique = true, nullable = false)
     @Length(min = 3, max = 10)
-    private String userName;
+    private String username;
 
 
     @Column(name = "full_name")
@@ -34,6 +36,16 @@ import org.hibernate.validator.constraints.Length;
     private String email;
 
 
+    
+
+    public Users(@Length(min = 3, max = 10) String username, @Length(min = 5, max = 20) String fullName,
+            @Length(min = 3) String password, @Email String email) {
+        this.username = username;
+        this.fullName = fullName;
+        this.password = password;
+        this.email = email;
+    }
+
     public long getId() {
         return id;
     }
@@ -42,12 +54,12 @@ import org.hibernate.validator.constraints.Length;
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFullName() {

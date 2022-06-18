@@ -58,6 +58,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.modelmapper.extensions/modelmapper-spring -->
+<dependency>
+    <groupId>org.modelmapper.extensions</groupId>
+    <artifactId>modelmapper-spring</artifactId>
+    <version>3.1.0</version>
+</dependency>
+
 	
    <dependency>
      <groupId>com.liferay.portal</groupId>

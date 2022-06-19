@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import com.example.battleships.model.enums.CategoryNames;
 
 @Entity
-@Table(name = "category")
+@Table(name = "categories")
 public class Categories {
 
     @Id

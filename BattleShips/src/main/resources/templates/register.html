@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" 
-xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -21,7 +20,6 @@ xmlns:th="http://www.thymeleaf.org">
                     Register</div></h1>
         </div>
         <div class="row">
-        
             <div class="col-md-6 ">
                 <img class="rounded" width="100%" src="/images/register.jpg" alt="Battle ship image">
             </div>
@@ -29,21 +27,26 @@ xmlns:th="http://www.thymeleaf.org">
             <div class="col-md-6">
                 <div class="container bg-blur rounded p-5 mt-5 w-75">
                     <form 
-                    th:action="@{/register}"
-                    th:method="post"
-                    th:object="${userRegistrationDTO}" 
+
+                    th:action="@{/register}" 
+                    th:method="POST"
+                    th:object="${userRegistrationDTO}"
+
                           class=" text-center text-light">
                         <div class="form-group row">
                             <label for="username" class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control"
+                                <input type="text"
                                        id="username"
-                                       th:field="*{username}"
                                        th:errorclass="is-invalid"
+                                       th:field="*{username}"
+                                       class="form-control"
                                        aria-describedby="usernameHelpInline" placeholder="Username">
-                                <p class="invalid-feedback bg-danger text-light rounded">
+                                <small
+                                       id="usernameHelpInline"
+                                       class="bg-danger text-light rounded invalid-feedback">
                                     Username length must be between 5 and 20 characters.
-                            </p>
+                                </small>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -53,25 +56,27 @@ xmlns:th="http://www.thymeleaf.org">
                                        id="fullName"
                                        th:field="*{fullName}"
                                        th:errorclass="is-invalid"
-                                       aria-describedby="fullNameHelpInline" placeholder="Full name">
-                                <p class="invalid-feedback bg-danger text-light rounded">
+                                       aria-describedby="fullNameHelpInline" placeholder="Full name"
+                                       >
+                                <small id="fullNameHelpInline"
+                                       class="bg-danger text-light rounded invalid-feedback">
                                     Enter valid full name.
-                            </p>
+                                </small>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" 
-                                id="email"
+                                <input type="text" class="form-control" id="email"
                                 th:field="*{email}"
                                 th:errorclass="is-invalid"
-                                aria-describedby="emailHelpInline" 
-                                placeholder="Email">
-                                <p class="invalid-feedback bg-danger text-light rounded">
+                                       aria-describedby="emailHelpInline" placeholder="email@example.com"
+                                       >
+                                <small id="emailHelpInline"
+                                       class="bg-danger text-light rounded invalid-feedback">
                                     Enter valid email address.
-                                </p>
-                         </div>
+                                </small>
+                            </div>
                         </div>
                         <div class="form-group row">
                             <label for="password" class="col-sm-2 col-form-label">Password</label>
@@ -80,25 +85,28 @@ xmlns:th="http://www.thymeleaf.org">
                                        id="password"
                                        th:field="*{password}"
                                        th:errorclass="is-invalid"
-                                       aria-describedby="passwordHelpInline" 
-                                       placeholder="Password">
-                                <p class="invalid-feedback bg-danger text-light rounded">
+                                       aria-describedby="passwordHelpInline" placeholder="Password"
+                                       >
+                                <small id="passwordHelpInline"
+                                       class="bg-danger text-light rounded invalid-feedback">
                                     Password length must be more than 3 characters long.
-                            </p>
+                                </small>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
                             <div class="col-sm-10">
-                                <input type="confirmPassword"
+                                <input type="password"
                                        class="form-control" 
                                        id="confirmPassword"
                                        th:field="*{confirmPassword}"
-                                        th:errorclass="is-invalid"
-                                       placeholder="Confirm Password">
-                                <p class="invalid-feedback bg-danger text-light rounded">
+                                       th:errorclass="is-invalid"
+                                       aria-describedby="confirmPasswordHelpInline" placeholder="Confirm Password"
+                                       >
+                                <small
+                                       id="confirmPasswordHelpInline" class="bg-danger text-light rounded invalid-feedback">
                                     Password length must be more than 3 characters long.
-                                </p>
+                                </small>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-warning w-50">Register</button>

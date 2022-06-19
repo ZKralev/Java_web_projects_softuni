@@ -2,37 +2,37 @@ package com.example.battleships.web;
 
 import javax.validation.Valid;
 
+import com.example.battleships.model.dtos.UserLoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.battleships.model.dtos.UserRegistrationDTO;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.battleships.service.AuthorizationService;
 
 @Controller
 public class AuthorizationController {
     
 
-    private AuthorizationService authService;
+    private final AuthorizationService authService;
 
     @Autowired
-    public AuthorizationController(AuthorizationService authorizationService) {
-        this.authService = authorizationService;
+    public AuthorizationController(AuthorizationService authorization) {
+        this.authService = authorization;
     }
 
     @ModelAttribute("userRegistrationDTO")
-    public UserRegistrationDTO  initForm(Model model){
+    public UserRegistrationDTO initFormReg(){
             return new UserRegistrationDTO();
     }
 
     @GetMapping("/register")
     public String register(){
-        return "register.html";
+        return "register";
     }
 
     @PostMapping("/register")
@@ -41,10 +41,12 @@ public class AuthorizationController {
 
         if(bindingResult.hasErrors()){
 
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegistrationDTO");
             redirectAttributes.addFlashAttribute("userRegistrationDTO", userRegistrationDTO);
+            redirectAttributes.addFlashAttribute
+            ("org.springframework.validation.BindingResult.userRegistrationDTO", bindingResult);
 
-            return "redirect:/home/register";
+
+            return "redirect:/register";
         }
         this.authService.register(userRegistrationDTO);
         return "/login";
@@ -53,6 +55,41 @@ public class AuthorizationController {
 
     @GetMapping("/login")
     public String login(){
-        return "login.html";
+        return "login";
     }
+
+    @GetMapping("/logout")
+    public String logout() {
+        authService.logout();
+        return "redirect:/";
+    }
+
+    @ModelAttribute("userLoginDTO")
+    public UserLoginDTO initFormLog(){
+        return new UserLoginDTO();
+    }
+
+    @PostMapping("/login")
+    public String login(@Valid UserLoginDTO userLoginDTO,
+                        BindingResult bindingResult,
+                        RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors() || !this.authService.login(userLoginDTO)) {
+            redirectAttributes.addFlashAttribute("userLoginDTO", userLoginDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userLoginDTO",
+                    bindingResult);
+            bindingResult.rejectValue("password", "InvalidPasswordError", "Invalid password.");
+            return "redirect:/login";
+        }
+
+        if(!this.authService.login(userLoginDTO)){
+            redirectAttributes.addFlashAttribute("userLoginDTO", userLoginDTO);
+            redirectAttributes.addFlashAttribute("badCredentials", true);
+
+            return "redirect:/login";
+        }
+
+        return "redirect:/home";
+    }
+
 }

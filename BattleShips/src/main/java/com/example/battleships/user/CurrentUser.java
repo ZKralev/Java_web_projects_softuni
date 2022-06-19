@@ -1,5 +1,6 @@
 package com.example.battleships.user;
 
+import com.example.battleships.model.Users;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -43,7 +44,12 @@ public class CurrentUser {
     return this;
   }
 
-  public void clear() {
+  public void login(Users user){
+    this.name = user.getFullName();
+    this.email = user.getEmail();
+  }
+
+  public void logout() {
     email = null;
     loggedIn = false;
     name = null;

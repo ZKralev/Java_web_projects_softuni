@@ -1,13 +1,35 @@
 package com.example.battleships.model.dtos;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class UserRegistrationDTO {
 
+    @NotBlank(message = "User's username cannot be empty.")
+    @Length(min = 3)
     private String username;
+
+    @NotBlank
+    @Size(min = 5, max = 20)
     private String fullName;
-    private String password;
-    private String confirmPassword;
+    
+    @Email
     private String email;
 
+    @NotBlank
+    @Size(min = 3)
+    private String password;
+
+    @NotBlank
+    @Size(min = 3)
+    private String confirmPassword;
+
+
+    public UserRegistrationDTO() {
+    }
 
 
     public String getUsername() {
@@ -44,7 +66,14 @@ public class UserRegistrationDTO {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+    @Override
+    public String toString() {
+        return "UserRegistrationDTO [confirmPassword=" + confirmPassword + ", email=" + email + ", fullName=" + fullName
+                + ", password=" + password + ", username=" + username + "]";
+    }
 
+
+    
     
     
     

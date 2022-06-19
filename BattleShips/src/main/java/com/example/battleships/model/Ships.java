@@ -8,12 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 
+import com.example.battleships.model.enums.CategoryNames;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "ships")
@@ -33,14 +32,25 @@ public class Ships {
     @Min(0)
     private long power;
 
-    @DateTimeFormat
     private LocalDate created;
 
     @ManyToOne(targetEntity = Categories.class)
-    private Categories type;
+    private CategoryNames type;
 
-    @OneToOne
+    @ManyToOne
     private Users user;
+
+    public Ships(String name, long health, long power, LocalDate created, CategoryNames type, Users user) {
+        this.name = name;
+        this.health = health;
+        this.power = power;
+        this.created = created;
+        this.type = type;
+        this.user = user;
+    }
+
+    public Ships() {
+    }
 
     public long getId() {
         return id;
@@ -54,8 +64,9 @@ public class Ships {
         return name;
     }
 
-    public void setName(String name) {
+    public Ships setName(String name) {
         this.name = name;
+        return null;
     }
 
     public long getHealth() {
@@ -83,11 +94,11 @@ public class Ships {
         this.created = created;
     }
 
-    public Categories getType() {
+    public CategoryNames getType() {
         return type;
     }
 
-    public void setType(Categories type) {
+    public void setType(CategoryNames type) {
         this.type = type;
     }
 

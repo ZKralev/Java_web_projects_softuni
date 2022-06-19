@@ -24,22 +24,26 @@ import org.hibernate.validator.constraints.Length;
     private String username;
 
 
-    @Column(name = "full_name")
+    @Column(name = "full_name", nullable = false)
     @Length(min = 5, max = 20)
     private String fullName;
 
     @Length(min = 3)
+    @Column(nullable = false)
     private String password;
 
-    @Email
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String email;
 
 
-    
+    public Users() {
+    }
 
-    public Users(@Length(min = 3, max = 10) String username, @Length(min = 5, max = 20) String fullName,
-            @Length(min = 3) String password, @Email String email) {
+    public Users(
+            @Length(min = 3, max = 10) String username,
+            @Length(min = 5, max = 20) String fullName,
+            @Email String email,
+            @Length(min = 3) String password) {
         this.username = username;
         this.fullName = fullName;
         this.password = password;

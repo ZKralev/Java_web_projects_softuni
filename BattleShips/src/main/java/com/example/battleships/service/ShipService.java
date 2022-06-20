@@ -4,6 +4,7 @@ import com.example.battleships.model.Categories;
 import com.example.battleships.model.Ships;
 import com.example.battleships.model.Users;
 import com.example.battleships.model.dtos.ShipDTO;
+import com.example.battleships.model.enums.CategoryNames;
 import com.example.battleships.repositories.CategoriesRepository;
 import com.example.battleships.repositories.ShipRepository;
 import com.example.battleships.repositories.UserRepository;
@@ -39,13 +40,20 @@ public class ShipService {
 
         Optional<Users> current = userRepository.findByEmail(currentUser.getEmail());
 
-        Optional<Categories> categories = categoriesRepository.findById(shipDTO.getCategory());
 
+        CategoryNames type = null;
+        switch (shipDTO.getCategory()) {
+            case "0" -> type = CategoryNames.BATTLE;
+            case "1" -> type = CategoryNames.CARGO;
+            case "2" -> type = CategoryNames.PATROL;
+        };
+
+        Categories category = this.categoriesRepository.findByName(type);
         Ships theNewShip = new Ships();
 
         theNewShip.setName(shipDTO.getName());
         theNewShip.setHealth(shipDTO.getHealth());
-        theNewShip.setType(categories.get().getName());
+        theNewShip.setType(category);
         theNewShip.setCreated(shipDTO.getCreated());
         theNewShip.setPower(shipDTO.getPower());
         theNewShip.setUser(current.get());

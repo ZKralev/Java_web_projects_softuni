@@ -35,12 +35,12 @@ public class Ships {
     private LocalDate created;
 
     @ManyToOne(targetEntity = Categories.class)
-    private CategoryNames type;
+    private Categories type;
 
     @ManyToOne
     private Users user;
 
-    public Ships(String name, long health, long power, LocalDate created, CategoryNames type, Users user) {
+    public Ships(String name, long health, long power, LocalDate created, Categories type, Users user) {
         this.name = name;
         this.health = health;
         this.power = power;
@@ -94,11 +94,11 @@ public class Ships {
         this.created = created;
     }
 
-    public CategoryNames getType() {
+    public Categories getType() {
         return type;
     }
 
-    public void setType(CategoryNames type) {
+    public void setType(Categories type) {
         this.type = type;
     }
 

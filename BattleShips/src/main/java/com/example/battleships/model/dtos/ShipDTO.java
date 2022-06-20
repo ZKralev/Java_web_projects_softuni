@@ -23,7 +23,7 @@ public class ShipDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate created;
 
-    private long category;
+    private String category;
 
     public ShipDTO() {
     }
@@ -60,11 +60,11 @@ public class ShipDTO {
         this.created = created;
     }
 
-    public long getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(long category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

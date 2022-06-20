@@ -1,0 +1,6 @@
+<header th:if="${@currentUser.isLoggedIn()}" >
+                <div th:block th:include="~{/fragments/navbarUser}">Navbar</div>
+</header>
+<header th:if="${@currentUser.isLoggedIn() == false}" >
+    <div th:block th:include="~{/fragments/navbarGuest}">Navbar</div>
+</header>

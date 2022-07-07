@@ -4,6 +4,7 @@ import bg.softuni.pathfinder.model.DTOS.UserRegistrationDTO;
 import bg.softuni.pathfinder.model.entity.User;
 import bg.softuni.pathfinder.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -12,23 +13,22 @@ import java.util.Optional;
 public class AuthService {
 
     private UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AuthService(UserRepository userRepository) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void register(UserRegistrationDTO userRegistrationDTO){
-
         if(!userRegistrationDTO.getPassword().equals(userRegistrationDTO.getConfirmPassword())){
             throw new RuntimeException("password.match");
         }
-
         Optional<User> byEmail = this.userRepository.findByEmail(userRegistrationDTO.getEmail());
         if(byEmail.isPresent()){
             throw new RuntimeException("email.used");
         }
-
         Optional<User> byUserName = this.userRepository.findByUsername(userRegistrationDTO.getUsername());
         if(byUserName.isPresent()){
             throw new RuntimeException("username.used");
@@ -36,13 +36,11 @@ public class AuthService {
 
         User user = new User(
                 userRegistrationDTO.getUsername(),
-                userRegistrationDTO.getPassword(),
+                passwordEncoder.encode(userRegistrationDTO.getPassword()),
                 userRegistrationDTO.getEmail(),
                 userRegistrationDTO.getFullname(),
                 userRegistrationDTO.getAge()
         );
-
         this.userRepository.save(user);
-
     }
 }

@@ -2,6 +2,7 @@ package bg.softuni.pathfinder.web;
 
 import bg.softuni.pathfinder.model.DTOS.UserRegistrationDTO;
 import bg.softuni.pathfinder.service.AuthService;
+import bg.softuni.pathfinder.service.PathfinderUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,8 @@ import javax.validation.Valid;
 @Controller
 public class AuthController {
 
-    public AuthService authService;
+    private final AuthService authService;
+    private PathfinderUserDetailsService pathfinderUserDetailsService;
 
     @Autowired
     public AuthController(AuthService authService) {
@@ -53,5 +55,8 @@ public class AuthController {
     public String login(){
         return "login";
     }
+
+
+
 
 }

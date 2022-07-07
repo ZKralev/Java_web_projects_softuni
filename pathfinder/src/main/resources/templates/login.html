@@ -5,7 +5,7 @@
     <th:block th:include="~{/fragments/head}" />
 </head>
 <body>
-<th:block th:include="~{fragments/nav-for-Login-Register.html}" />
+<th:block th:include="~{fragments/header.html}" />
 
 
 <main class="p-5 align-content-center bg-blur my-register-div">
@@ -15,8 +15,8 @@
         <div class="row g-3 align-items-center">
 
             <form
-                    action="/"
-                    method="">
+                    th:action="@{/login}"
+                    th:method="POST">
                 <div>
                     <div class="col-auto">
                         <label for="inputUsername" class="col-form-label ">Username</label>

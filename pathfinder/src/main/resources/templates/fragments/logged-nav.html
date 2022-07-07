@@ -1,4 +1,4 @@
-<th:block>
+<th:block xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <nav class="main-nav">
     <ul>
       <li>
@@ -14,7 +14,7 @@
         <a href="/">Profile</a>
       </li>
       <li>
-        <a href="/">Admin</a>
+        <a sec:authproze="hasRole('ADMIN')" href="/static">Admin</a>
       </li>
       <li>
         <a href="/">Logout</a>

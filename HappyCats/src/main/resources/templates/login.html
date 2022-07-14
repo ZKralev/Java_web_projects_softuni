@@ -1,0 +1,76 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <div th:replace="fragments/head">Head</div>
+    <title>Login</title>
+    <div th:replace="fragments/Top">Topbar</div>
+<body>
+<div th:replace="fragments/header">Header</div>
+
+
+<main class="p-5 align-content-center bg-blur my-register-div">
+    <h1 class="    border-bottom mb-5">Login</h1>
+    <div class="d-flex justify-content-center">
+
+        <div class="row g-3 align-items-center">
+
+            <form
+                    th:action="@{/login}"
+                    th:method="POST">
+                <div>
+                    <div class="col-auto">
+                        <label for="inputUsername" class="col-form-label ">Username</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="text"
+                               name="username"
+                               required minlength="4" maxlength="20"
+                               id="inputUsername"
+                               class="form-control"
+                               aria-describedby="usernameHelpInline">
+                    </div>
+                </div>
+                <div>
+                    <div class="col-auto">
+                        <label for="inputPassword" class="col-form-label ">Password</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="password"
+                               name="password"
+                               required minlength="4" maxlength="20"
+                               id="inputPassword" class="form-control"
+                               aria-describedby="passwordHelpInline">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-2">
+                    <button class="btn btn-primary btn-block w-50" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</main>
+<th:block th:include="~{fragments/footer}" />
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="mail/jqBootstrapValidation.min.js"></script>
+<script src="mail/contact.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+</body>
+</html>

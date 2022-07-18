@@ -7902,6 +7902,15 @@ button.bg-dark:focus {
   margin-top: -0.5rem !important;
 }
 
+.nav-lang{
+  align-self: center;
+  padding: 30px 20px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #F2F2F4;
+  outline: none;
+}
+
 .mr-n2,
 .mx-n2 {
   margin-right: -0.5rem !important;

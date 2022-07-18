@@ -1,7 +1,7 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/pathfinder?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/HappyPets?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
     username: root
     password: mynewpassword
   #mvc:
@@ -11,12 +11,19 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     #open-in-view: false
     defer-datasource-initialization: true
     #properties:
       #hibernate:
         #format_sql: true
-  sql:
-    init:
-      mode: always
+#  sql:
+#    init:
+#      mode: always
+
+
+mail:
+  host: "localhost"
+  port: 1025
+  username: "hpets@yahoo.com"
+  password: ""

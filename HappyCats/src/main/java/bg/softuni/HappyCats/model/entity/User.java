@@ -1,10 +1,12 @@
 package bg.softuni.HappyCats.model.entity;
 
-import bg.softuni.HappyCats.model.enums.Level;
+import bg.softuni.HappyCats.model.enums.Plan;
+import bg.softuni.HappyCats.model.enums.UserRoleEnum;
+import net.bytebuddy.implementation.bind.annotation.Default;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -13,7 +15,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, unique = true)
+    @Column( unique = true)
     private String username;
 
     @Column(nullable = false)
@@ -25,33 +27,31 @@ public class User {
     @Column(name = "full_name")
     private String fullName;
 
-    private int age;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    @OneToMany
+    private List<Pets> pets;
 
     @Enumerated(EnumType.STRING)
-    private Level level;
+    private Plan plan;
+
+    @Enumerated(EnumType.STRING)
+    private UserRoleEnum userRole;
 
     public User() {
-        this.roles = new HashSet<>();
+        this.pets = new ArrayList<>();
     }
 
-    public User(String username, String password, String email, String fullName, int age) {
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String username, String password, String email, String fullName) {
         this();
         this.username = username;
         this.password = password;
         this.email = email;
         this.fullName = fullName;
-        this.age = age;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public long getId() {
@@ -86,19 +86,37 @@ public class User {
         this.email = email;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public Level getLevel() {
-        return level;
+    public List<Pets> getPets() {
+        return pets;
     }
 
-    public void setLevel(Level level) {
-        this.level = level;
+    public void setPets(List<Pets> pets) {
+        this.pets = pets;
     }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
+    public UserRoleEnum getUserRoles() {
+        return userRole;
+    }
+
+    public User setUserRoles(UserRoleEnum userRoles) {
+        this.userRole = userRoles;
+        return this;
+    }
+
 }

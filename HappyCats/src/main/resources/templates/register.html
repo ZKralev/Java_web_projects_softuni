@@ -16,9 +16,9 @@
     <div class="d-flex justify-content-center ">
         <div class="row g-3">
             <form
-                    th:action="@{/register}"
+                    th:action="@{/users/register}"
                     th:method="POST"
-                    th:object="${userRegistrationDTO}" >
+                    th:object="${userModel}" >
                 <div>
                     <div class="col-auto">
                         <label for="inputUsername" class="col-form-label ">Username</label>
@@ -36,7 +36,7 @@
                                class="invalid-feedback bg-danger rounded">Username length must be more than 3 characters</small>
 
                         <small id="usernameUniqueError"
-                               class=" bg-danger rounded">Username is already occupied</small>
+                               class="invalid-feedback bg-danger rounded">Username is already occupied</small>
 
                     </div>
                 </div>
@@ -72,25 +72,12 @@
                                id="inputEmail"
                                class="form-control"
                                aria-describedby="emailHelpInline">
-                        <small
-                                id="emailError"
-                               class="invalid-feedback  form-text bg-danger rounded">Must be valid email</small>
-                    </div>
-                </div>
-                <div>
-                    <div class="col-auto">
-                        <label for="inputAge" class="col-form-label ">Age</label>
-                    </div>
-                    <div class="col-auto">
-                        <input name="age" required
-                               th:value="*{age}"
-                               type="number"
-                               id="inputAge"
-                               class="form-control"
-                               min="0" max="90"
-                               aria-describedby="ageHelpInline">
-                        <small id="ageError"
-                               class="invalid-feedback  form-text bg-danger rounded">Must be valid age</small>
+                        <div class="invalid-feedback errors alert alert-danger">
+                            <div
+                                    th:each="err : ${#fields.errors('email')}"
+                                    th:text="${err}"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div>
@@ -100,6 +87,7 @@
                     <div class="col-auto">
                         <input name="password"
                                th:value="*{password}"
+                               th:errorclass="is-invalid"
                                required minlength="5" maxlength="20"
                                type="password"
                                id="inputPassword"
@@ -119,6 +107,7 @@
                     <div class="col-auto">
                         <input name="confirmPassword"
                                th:value="*{confirmPassword}"
+                               th:errorclass="is-invalid"
                                 required minlength="5" maxlength="20"
                                type="password"
                                id="inputConfirmPassword"

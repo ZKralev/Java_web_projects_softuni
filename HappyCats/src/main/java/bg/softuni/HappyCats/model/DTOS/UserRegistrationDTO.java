@@ -1,49 +1,55 @@
 package bg.softuni.HappyCats.model.DTOS;
 
+import bg.softuni.HappyCats.model.validation.FieldMatch;
+import bg.softuni.HappyCats.model.validation.UniqueUserEmail;
 import javax.validation.constraints.*;
 
+@FieldMatch(
+        first = "password",
+        second = "confirmPassword",
+        message = "Passwords do not match."
+)
 public class UserRegistrationDTO {
-
-    @NotNull
+    @NotEmpty
     @Size(min = 5, max = 20)
     private String username;
 
-    @NotNull
+    @NotEmpty(message = "User email should be provided.")
+    @Email(message = "User email should be valid.")
+    @UniqueUserEmail(message = "User email should be unique.")
     @Size(min = 5, max = 20)
     private String fullname;
 
-    @NotNull
+    @NotEmpty
     @Email
     private String email;
 
-    @Min(1)
-    @Max(99)
-    private int age;
 
-    @NotNull
+    @NotEmpty
     @Size(min = 5, max = 20)
     private String password;
 
-    @NotNull
-    @Size(min = 5, max = 20)
+
     private String confirmPassword;
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public UserRegistrationDTO setUsername(String username) {
         this.username = username;
+        return this;
+
     }
 
     public String getFullname() {
         return fullname;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public UserRegistrationDTO setFullname(String fullName) {
+        this.fullname = fullName;
+        return this;
     }
-
     public String getEmail() {
         return email;
     }
@@ -52,37 +58,28 @@ public class UserRegistrationDTO {
         this.email = email;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public UserRegistrationDTO setPassword(String password) {
         this.password = password;
+        return this;
     }
-
     public String getConfirmPassword() {
         return confirmPassword;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
+    public UserRegistrationDTO setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+        return this;
     }
-
     @Override
     public String toString() {
         return "UserRegistrationDTO{" +
                 "username='" + username + '\'' +
                 ", fullname='" + fullname + '\'' +
                 ", email='" + email + '\'' +
-                ", age=" + age +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';

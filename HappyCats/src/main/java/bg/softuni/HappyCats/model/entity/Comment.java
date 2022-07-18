@@ -20,8 +20,6 @@ public class Comment {
     @ManyToOne
     private User author;
 
-    @ManyToOne
-    private Route route;
 
     public Comment() {}
 
@@ -65,12 +63,5 @@ public class Comment {
         this.author = author;
     }
 
-    public Route getRoute() {
-        return route;
-    }
-
-    public void setRoute(Route route) {
-        this.route = route;
-    }
 }
 

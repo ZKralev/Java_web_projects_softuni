@@ -1,4 +1,4 @@
-$(function () {
+$(function () {securityFilterChain
 
     $("#contactForm input, #contactForm textarea").jqBootstrapValidation({
         preventSubmit: true,

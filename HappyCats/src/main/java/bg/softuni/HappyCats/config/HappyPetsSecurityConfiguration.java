@@ -26,16 +26,15 @@ public class HappyPetsSecurityConfiguration {
                 // everyone can download static resources (css, js, images)
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 // everyone can login and register
-                        antMatchers("/", "/users/login", "/users/register").permitAll().
+                        antMatchers("/", "/login", "/register").permitAll().
                 antMatchers("/**").permitAll().
                 // all other pages are available for logger in users
                         anyRequest().
-                authenticated().
-                and().
+                authenticated().and().
                 // configuration of form login
                         formLogin().
                 // the custom login form
-                        loginPage("/users/login").
+                        loginPage("/login").
                 // the name of the username form field
                         usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
                 // the name of the password form field
@@ -43,17 +42,19 @@ public class HappyPetsSecurityConfiguration {
                 // where to go in case that the login is successful
                         defaultSuccessUrl("/").
                 // where to go in case that the login failed
-                        failureForwardUrl("/users/login-error").
+                        failureForwardUrl("/login-error").
                 and().
                 // configure logut
                         logout().
                 // which is the logout url, must be POST request
-                        logoutUrl("/users/logout").
+                        logoutUrl("/logout").
+        // invalidate the session and delete the cookies
+                deleteCookies("JSESSIONID").
+
+                invalidateHttpSession(true).
                 // on logout go to the home page
-                        logoutSuccessUrl("/").
-                // invalidate the session and delete the cookies
-                        invalidateHttpSession(true).
-                deleteCookies("JSESSIONID");
+
+                        logoutSuccessUrl("/");
 
         return http.build();
     }

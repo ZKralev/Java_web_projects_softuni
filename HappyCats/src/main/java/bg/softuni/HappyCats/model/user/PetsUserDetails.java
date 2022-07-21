@@ -8,19 +8,26 @@ import java.util.Collections;
 
 public class PetsUserDetails implements UserDetails {
 
+  private final Long id;
   private final String password;
   private final String username;
   private final String fullName;
   private final GrantedAuthority authorities;
 
-  public PetsUserDetails(String password,
-                             String username,
-                             String fullName,
-                             GrantedAuthority authorities) {
+  public PetsUserDetails(Long id,
+                        String password,
+                         String username,
+                         String fullName,
+                         GrantedAuthority authorities) {
+    this.id = id;
     this.password = password;
     this.username = username;
     this.fullName = fullName;
     this.authorities = authorities;
+  }
+
+  public Long getId() {
+    return id;
   }
 
   public String getFullName() {

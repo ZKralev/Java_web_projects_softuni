@@ -1,23 +1,18 @@
 package bg.softuni.HappyCats.service;
 
-import bg.softuni.HappyCats.model.enums.UserRoleEnum;
 import bg.softuni.HappyCats.model.user.PetsUserDetails;
 import bg.softuni.HappyCats.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import bg.softuni.HappyCats.model.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
-@Service
 public class HappyPetsUserDetailsService implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
     public HappyPetsUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -25,24 +20,24 @@ public class HappyPetsUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
+
         return userRepository.
-                findByEmail(username).
-                map(this::map).
+                findByUsername(username).
+                map(this::mapIt).
                 orElseThrow(() -> new UsernameNotFoundException("User with email " + username + " not found!"));
     }
 
-    private UserDetails map(User userEntity) {
+    private UserDetails mapIt(User userEntity) {
 
         GrantedAuthority auth = new SimpleGrantedAuthority("ROLE_" +
-                userEntity.getUserRoles().getDeclaringClass().getName());
+                userEntity.getUserRoles().name());
 
-        PetsUserDetails petsUserDetails = new PetsUserDetails(
+        return new PetsUserDetails(
+                userEntity.getId(),
                 userEntity.getPassword(),
                 userEntity.getUsername(),
                 userEntity.getFullName(),
                 auth);
-
-        return petsUserDetails;
     }
 
 

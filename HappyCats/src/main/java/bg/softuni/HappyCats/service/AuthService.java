@@ -14,8 +14,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Optional;
+
+import java.util.Locale;
+
 
 @Service
 public class AuthService {
@@ -23,14 +24,14 @@ public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
-    private final UserDetailsService userDetailsService;
+    private final HappyPetsUserDetailsService userDetailsService;
     private final EmailService emailService;
 
     @Autowired
     public AuthService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder,
                        UserMapper userMapper,
-                       UserDetailsService userDetailsService,
+                       HappyPetsUserDetailsService userDetailsService,
                        EmailService emailService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
@@ -39,21 +40,23 @@ public class AuthService {
         this.emailService = emailService;
     }
 
-    public void registerAndLogin(UserRegistrationDTO userRegisterDTO) {
+    public void registerAndLogin(UserRegistrationDTO userRegisterDTO, Locale preferredLocale) {
 
         User newUser = userMapper.userDtoToUserEntity(userRegisterDTO);
         newUser.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+        newUser.setUserRoles(UserRoleEnum.USER);
+        newUser.setUsername(userRegisterDTO.getUsername());
 
         this.userRepository.save(newUser);
         login(newUser);
         emailService.sendRegistrationEmail(newUser.getEmail(),
-                newUser.getFullName());
+                newUser.getFullName(), preferredLocale);
     }
 
 
     private void login(User userEntity) {
         UserDetails userDetails =
-                userDetailsService.loadUserByUsername(userEntity.getEmail());
+                userDetailsService.loadUserByUsername(userEntity.getUsername());
 
         Authentication auth =
                 new UsernamePasswordAuthenticationToken(
@@ -66,4 +69,6 @@ public class AuthService {
                 getContext().
                 setAuthentication(auth);
     }
+
+
 }

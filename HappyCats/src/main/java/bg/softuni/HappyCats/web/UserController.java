@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/")
 public class UserController {
 
   @GetMapping("/login")
@@ -23,6 +23,8 @@ public class UserController {
     redirectAttributes.addFlashAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY, username);
     redirectAttributes.addFlashAttribute("bad_credentials", true);
 
-    return "redirect:/users/login";
+    return "redirect:/login";
   }
+
+
 }

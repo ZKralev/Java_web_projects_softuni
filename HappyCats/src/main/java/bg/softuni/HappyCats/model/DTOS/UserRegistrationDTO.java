@@ -14,14 +14,13 @@ public class UserRegistrationDTO {
     @Size(min = 5, max = 20)
     private String username;
 
-    @NotEmpty(message = "User email should be provided.")
-    @Email(message = "User email should be valid.")
-    @UniqueUserEmail(message = "User email should be unique.")
+
     @Size(min = 5, max = 20)
     private String fullname;
 
-    @NotEmpty
-    @Email
+    @NotEmpty(message = "User email should be provided.")
+    @Email(message = "User email should be valid.")
+    @UniqueUserEmail(message = "User email should be unique.")
     private String email;
 
 
@@ -31,6 +30,18 @@ public class UserRegistrationDTO {
 
 
     private String confirmPassword;
+
+
+    public UserRegistrationDTO() {
+    }
+
+    public UserRegistrationDTO(String username, String fullname, String email, String password, String confirmPassword) {
+        this.username = username;
+        this.fullname = fullname;
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
 
     public String getUsername() {
         return username;

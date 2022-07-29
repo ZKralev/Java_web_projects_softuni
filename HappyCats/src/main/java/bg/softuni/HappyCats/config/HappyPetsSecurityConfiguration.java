@@ -44,7 +44,7 @@ public class HappyPetsSecurityConfiguration {
                 // where to go in case that the login failed
                         failureForwardUrl("/login-error").
                 and().
-                // configure logut
+                // configure logout
                         logout().
                 // which is the logout url, must be POST request
                         logoutUrl("/logout").

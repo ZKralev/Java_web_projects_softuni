@@ -10,12 +10,10 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private boolean approved;
-
     private LocalDateTime created;
 
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String text;
+    private String message;
 
     @ManyToOne
     private User author;
@@ -31,28 +29,21 @@ public class Comment {
         this.id = id;
     }
 
-    public boolean isApproved() {
-        return approved;
-    }
-
-    public void setApproved(boolean approved) {
-        this.approved = approved;
-    }
 
     public LocalDateTime getCreated() {
         return created;
     }
 
     public void setCreated(LocalDateTime created) {
-        this.created = created;
+        this.created = LocalDateTime.now();
     }
 
-    public String getText() {
-        return text;
+    public String getMessage() {
+        return message;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setMessage(String text) {
+        this.message = text;
     }
 
     public User getAuthor() {

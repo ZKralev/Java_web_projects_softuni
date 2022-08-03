@@ -79,6 +79,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5rem;
 }
 
+
+
 p {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -9849,4 +9851,9 @@ h6 {
   margin: 0;
   padding: 0;
   list-style-type: none;
+}
+
+mb-4 {
+  margin-top: 20px;
+  margin-left: 20px;
 }

@@ -9620,7 +9620,6 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .text-hide {
-  font: 0/0 a;
   color: transparent;
   text-shadow: none;
   background-color: transparent;
@@ -9854,6 +9853,7 @@ h6 {
 }
 
 mb-4 {
-  margin-top: 20px;
-  margin-left: 20px;
+  position: absolute;
+  left: 700px;
+  top: 200px;
 }

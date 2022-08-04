@@ -15,11 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/")
 public class AuthController {
 
     private final AuthService authService;
-    private LocaleResolver localeResolver;
+    private final LocaleResolver localeResolver;
 
     public AuthController(AuthService authService, LocaleResolver localeResolver) {
         this.authService = authService;

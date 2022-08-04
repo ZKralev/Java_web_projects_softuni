@@ -11,7 +11,7 @@ public class AddCommentDTO {
 
     private String message;
 
-    private User author;
+    private String username;
 
     public AddCommentDTO() {
     }
@@ -24,11 +24,11 @@ public class AddCommentDTO {
         this.message = message;
     }
 
-    public User getAuthor() {
-        return author;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

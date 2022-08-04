@@ -1,14 +1,13 @@
 package bg.softuni.HappyCats.model.mapper;
 
-import bg.softuni.HappyCats.model.DTOS.AddBookingDTO;
 import bg.softuni.HappyCats.model.DTOS.AddCommentDTO;
-import bg.softuni.HappyCats.model.DTOS.UserRegistrationDTO;
-import bg.softuni.HappyCats.model.entity.Booking;
 import bg.softuni.HappyCats.model.entity.Comment;
 import bg.softuni.HappyCats.model.entity.User;
+import bg.softuni.HappyCats.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.processing.Generated;
+import java.util.Optional;
 
 @Generated(
         value = "org.mapstruct.ap.MappingProcessor",
@@ -18,6 +17,9 @@ import javax.annotation.processing.Generated;
 @Component
 public class CommentMapperImpl implements CommentMapper {
 
+    private UserRepository userRepository;
+
+
     @Override
     public Comment commentMapperDTO(AddCommentDTO addCommentDTO) {
         if ( addCommentDTO == null ) {
@@ -25,8 +27,8 @@ public class CommentMapperImpl implements CommentMapper {
         }
 
         Comment commentEntitu = new Comment();
-
-        commentEntitu.setAuthor(addCommentDTO.getAuthor());
+        Optional<User> user = userRepository.findByUsername(addCommentDTO.getUsername());
+        commentEntitu.setAuthor(user.get());
         commentEntitu.setMessage(addCommentDTO.getMessage());
 
         return commentEntitu;

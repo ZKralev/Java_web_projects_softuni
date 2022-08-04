@@ -7,11 +7,11 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class CommentsController {
@@ -40,11 +40,10 @@ public class CommentsController {
             redirectAttributes.addFlashAttribute("addCommentDTO", addCommentDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addCommentDTO",
                     bindingResult);
-            return "redirect:/add-comment";
+            return "redirect:/comment";
         }
-
         commentService.addComment(addCommentDTO, userDetails);
 
-        return "redirect:/booking";
+        return "redirect:/index";
     }
 }

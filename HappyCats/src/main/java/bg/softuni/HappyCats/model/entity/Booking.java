@@ -3,8 +3,11 @@ package bg.softuni.HappyCats.model.entity;
 import bg.softuni.HappyCats.model.enums.Service;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Date;
+
+import static bg.softuni.HappyCats.model.enums.Service.valueOf;
 
 @Entity
 @Table(name = "booking")
@@ -22,7 +25,7 @@ public class Booking {
     private Date reservationDate;
 
     @Column(name = "reservation_time")
-    private Time reservationTime;
+    private LocalDateTime reservationTime;
 
     @Enumerated(EnumType.STRING)
     private Service service;
@@ -55,20 +58,20 @@ public class Booking {
         this.reservationDate = reservationDate;
     }
 
-    public Time getReservationTime() {
+    public LocalDateTime getReservationTime() {
         return reservationTime;
     }
 
-    public void setReservationTime(Time reservationTime) {
-        this.reservationTime = reservationTime;
+    public void setReservationTime(String reservationTime) {
+        this.reservationTime = LocalDateTime.parse(reservationTime);
     }
 
     public Service getService() {
         return service;
     }
 
-    public void setService(Service service) {
-        this.service = service;
+    public void setService(String service) {
+        this.service = valueOf(service);
     }
 
     public Long getId() {

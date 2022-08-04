@@ -3,7 +3,7 @@ package bg.softuni.HappyCats.model.DTOS;
 import bg.softuni.HappyCats.model.enums.Service;
 
 
-import java.sql.Time;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 public class AddBookingDTO {
@@ -14,9 +14,9 @@ public class AddBookingDTO {
 
     private Date reservationDate;
 
-    private Time reservationTime;
+    private String reservationTime;
 
-    private Service service;
+    private String service;
 
     public AddBookingDTO() {
     }
@@ -25,39 +25,44 @@ public class AddBookingDTO {
         return name;
     }
 
-    public void setName(String name) {
+    public AddBookingDTO setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public AddBookingDTO setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public Date getReservationDate() {
         return reservationDate;
     }
 
-    public void setReservationDate(Date reservationDate) {
+    public AddBookingDTO setReservationDate(Date reservationDate) {
         this.reservationDate = reservationDate;
+        return this;
     }
 
-    public Time getReservationTime() {
+    public String getReservationTime() {
         return reservationTime;
     }
 
-    public void setReservationTime(Time reservationTime) {
+    public AddBookingDTO setReservationTime(String reservationTime) {
         this.reservationTime = reservationTime;
+        return this;
     }
 
-    public Service getService() {
+    public String getService() {
         return service;
     }
 
-    public void setService(Service service) {
+    public AddBookingDTO setService(String service) {
         this.service = service;
+        return this;
     }
 }

@@ -16,23 +16,18 @@ public class HomeController {
     }
 
     @GetMapping("/about")
-    public String about(){
+    public String about() {
         return "about";
     }
 
     @GetMapping("/service")
-    public String service(){
+    public String service() {
         return "service";
     }
 
     @GetMapping("/price")
-    public String price(){
+    public String price() {
         return "price";
-    }
-
-    @GetMapping("/booking")
-    public String booking(){
-        return "booking";
     }
 
 }

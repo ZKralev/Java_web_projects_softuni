@@ -16,49 +16,6 @@
     <div th:replace="fragments/header">Header</div>
     <!-- Navbar End -->
 
-
-    <!-- Services Start -->
-    <div class="container-fluid bg-light pt-5">
-        <div class="container py-5">
-            <div class="row pb-3">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-                        <h3 class="flaticon-house display-3 font-weight-normal text-secondary mb-3"></h3>
-                        <h3 class="mb-3">Pet Boarding</h3>
-                        <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo</p>
-                        <a class="text-uppercase font-weight-bold" href="">Read More</a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-                        <h3 class="flaticon-food display-3 font-weight-normal text-secondary mb-3"></h3>
-                        <h3 class="mb-3">Pet Feeding</h3>
-                        <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo</p>
-                        <a class="text-uppercase font-weight-bold" href="">Read More</a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-                        <h3 class="flaticon-grooming display-3 font-weight-normal text-secondary mb-3"></h3>
-                        <h3 class="mb-3">Pet Grooming</h3>
-                        <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo</p>
-                        <a class="text-uppercase font-weight-bold" href="">Read More</a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5">
-                        <h3 class="flaticon-toy display-3 font-weight-normal text-secondary mb-3"></h3>
-                        <h3 class="mb-3">Pet Tranning</h3>
-                        <p>Diam amet eos at no eos sit lorem, amet rebum ipsum clita stet, diam sea est magna diam eos, rebum sit vero stet ipsum justo</p>
-                        <a class="text-uppercase font-weight-bold" href="">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Services End -->
-
-
     <!-- Booking Start -->
     <div class="container-fluid">
         <div class="container">
@@ -68,60 +25,51 @@
                         <form
                                 th:action="@{/booking}"
                                 th:method="post"
-                                th:object="${addBookingDTO}"
+                                th:object="${addBookingModel}"
                                 class="py-5">
                             <div class="form-group">
                                 <input type="text"
+                                       id="name"
                                        th:field="*{name}"
                                        th:errorclass="is-invalid"
                                        class="form-control border-0 p-4" placeholder="Your Name" required="required" />
                             </div>
                             <div class="form-group">
                                 <input type="email"
+                                       id="email"
                                        th:field="*{email}"
                                        th:errorclass="is-invalid"
                                        class="form-control border-0 p-4" placeholder="Your Email" required="required" />
                             </div>
                             <div class="form-group">
-                                <div class="date"
-                                     th:field="*{reservationDate}"
-                                     th:errorclass="is-invalid"
-                                     id="date" data-target-input="nearest">
-                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input" placeholder="Reservation Date" data-target="#date" data-toggle="datetimepicker"/>
+                                <div class="date" id="date" data-target-input="nearest">
+                                    <input type="text"
+                                           th:field="*{reservationDate}"
+                                           th:errorclass="is-invalid"
+                                           class="form-control border-0 p-4 datetimepicker-input" placeholder="Reservation Date" data-target="#date" data-toggle="datetimepicker"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="time"
-                                     th:field="*{reservationTime}"
-                                     th:errorclass="is-invalid"
-                                     id="time" data-target-input="nearest">
-                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input" placeholder="Reservation Time" data-target="#time" data-toggle="datetimepicker"/>
+                                <div class="time" id="time" data-target-input="nearest">
+                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input"
+                                           th:field="*{reservationTime}"
+                                           th:errorclass="is-invalid"
+                                           placeholder="Reservation Time" data-target="#time" data-toggle="datetimepicker"/>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="text-center text-white font-weight-bold" for="service">Service</label>
+                           <div class="form-group">-->
+                                <label class="text-center text-white font-weight-bold" for="service">Service</label>-->
                                 <select class="custom-select border-0 px-4" style="height: 47px;"
-                                        id="service"
+                                        th:field="*{service}"
                                         th:errorclass="is-invalid">
-                                <option value="">- Select service type </option>
-                                <option th:each="e : ${T(bg.softuni.HappyCats.model.enums.Service).values()}"
-                                        th:text="${e}"
-                                        th:value="${e}"
-                                        th:selected="${e} == *{service}">
-                                    Service type
-                                </option>
-                                </select>
-                                <p class="invalid-feedback errors alert alert-danger">
-                                    Service is required.
-                                </p>
-<!--                                <select class="custom-select border-0 px-4" style="height: 47px;">-->
-<!--                                    <option selected>Select A Service</option>-->
-<!--                                    <option value="1">Boarding</option>-->
-<!--                                    <option value="2">Feeding</option>-->
-<!--                                    <option value="3">Grooming</option>-->
-<!--                                    <option value="3">Tranning</option>-->
-<!--                                </select>-->
-                            </div>
+                                    <option value="0">Boarding</option>
+                                    <option value="1">Feeding</option>
+                                    <option value="2">Grooming</option>
+                                    <option value="3">Tranning</option>
+                            </select>
+                               <p class="invalid-feedback errors alert alert-danger">
+                                   Service is required.
+                               </p>
+                           </div>
                             <div>
                                 <button class="btn btn-dark btn-block border-0 py-3" type="submit">Book Now</button>
                             </div>

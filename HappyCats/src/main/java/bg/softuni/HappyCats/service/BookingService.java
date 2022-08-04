@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookingService {
 
-    private BookingRepository bookingRepository;
-    private BookingMapper bookingMapper;
+    private final BookingRepository bookingRepository;
+    private final BookingMapper bookingMapper;
 
     public BookingService(BookingRepository bookingRepository, BookingMapper bookingMapper) {
         this.bookingRepository = bookingRepository;

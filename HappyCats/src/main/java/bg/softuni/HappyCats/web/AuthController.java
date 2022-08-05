@@ -57,9 +57,6 @@ public class AuthController {
         return "redirect:/";
     }
 
-    @GetMapping("/logout")
-    public String logout() {
-        return "index";
-    }
+
 
 }

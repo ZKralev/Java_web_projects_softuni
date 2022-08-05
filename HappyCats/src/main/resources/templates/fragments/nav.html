@@ -32,8 +32,9 @@
         <a th:href="@{/register}" class="nav-item nav-link" sec:authorize="!isAuthenticated()"
            th:text="#{navbar_register}"
         >Register</a>
-        <a th:href="@{/logout}" class="nav-item nav-link" sec:authorize="isAuthenticated()"
-           th:text="#{navbar_logout}">Logout</a>
+        <a th:href="@{/comment}" class="nav-item nav-link" sec:authorize="isAuthenticated()"
+           th:text="#{navbar_comment}">Add Comment</a>
+        <input th:action="@{/logout}" th:method="post" sec:authorize="isAuthenticated()" class="btn btn-link nav-item nav-link" type="submit" value="Logout">
 
         <li class="nav-item" sec:authorize="isAuthenticated()">
           <div class="form-inline my-2 my-lg-0 px-3">

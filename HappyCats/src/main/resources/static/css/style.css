@@ -7853,7 +7853,7 @@ button.bg-dark:focus {
 
 .pt-5,
 .py-5 {
-  padding-top: 3rem !important;
+  padding-top: 1.5rem !important;
 }
 
 .pr-5,
@@ -7863,7 +7863,7 @@ button.bg-dark:focus {
 
 .pb-5,
 .py-5 {
-  padding-bottom: 3rem !important;
+  padding-bottom: 2rem !important;
 }
 
 .pl-5,
@@ -9770,7 +9770,7 @@ h6 {
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  padding: 30px 20px;
+  padding: 33px 20px;
   font-size: 18px;
   letter-spacing: 1px;
   color: #F2F2F4;
@@ -9858,3 +9858,5 @@ mb-4 {
   left: 700px;
   top: 200px;
 }
+
+

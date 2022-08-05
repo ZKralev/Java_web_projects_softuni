@@ -26,6 +26,7 @@
                                 th:method="post"
                                 th:object="${addBookingModel}"
                                 class="py-5">
+                            <label class="text-center text-white font-weight-bold" >Please fill your information and required date/time, and we will give you a call as soon as possible to confirm everything.</label>
 
                             <div class="form-group">
                                 <input type="text"
@@ -42,29 +43,23 @@
                                        class="form-control border-0 p-4" placeholder="Your Email" required="required" />
                             </div>
                             <div class="form-group">
-                                <div class="date" id="date" data-target-input="nearest">
-                                    <input type="text"
-                                           th:field="*{reservationDate}"
+                                <div class="date" id="date">
+                                    <input type="datetime-local"
+                                           th:field="*{reservationDateTime}"
                                            th:errorclass="is-invalid"
-                                           class="form-control border-0 p-4 datetimepicker-input" placeholder="Reservation Date" data-target="#date" data-toggle="datetimepicker"/>
+                                           class="form-control border-0 p-4 datetimepicker-input" placeholder="Reservation Date"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="time" id="time" data-target-input="nearest">
-                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input"
-                                           th:field="*{reservationTime}"
-                                           th:errorclass="is-invalid"
-                                           placeholder="Reservation Time" data-target="#time" data-toggle="datetimepicker"/>
-                                </div>
-                           <div class="form-group">-->
+
+                           <div class="form-group">
                                 <label class="text-center text-white font-weight-bold" >Service</label>
                                 <select class="custom-select border-0 px-4" style="height: 47px;"
                                         th:field="*{service}"
                                         th:errorclass="is-invalid">
-                                    <option value="0">Boarding</option>
-                                    <option value="1">Feeding</option>
-                                    <option value="2">Grooming</option>
-                                    <option value="3">Tranning</option>
+                                    <option value=0>Boarding</option>
+                                    <option value=1>Feeding</option>
+                                    <option value=2>Grooming</option>
+                                    <option value=3>Tranning</option>
                             </select>
                                <p class="invalid-feedback errors alert alert-danger">
                                    Service is required.
@@ -72,7 +67,6 @@
                            </div>
                             <div>
                                 <button class="btn btn-dark btn-block border-0 py-3" type="submit">Book Now</button>
-                            </div>
                             </div>
                         </form>
                     </div>

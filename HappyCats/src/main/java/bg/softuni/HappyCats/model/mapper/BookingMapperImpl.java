@@ -7,6 +7,8 @@ import bg.softuni.HappyCats.model.entity.User;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.processing.Generated;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Generated(
         value = "org.mapstruct.ap.MappingProcessor",
@@ -26,8 +28,7 @@ public class BookingMapperImpl implements BookingMapper {
 
         bookingEntity.setName(addBookingDTO.getName());
         bookingEntity.setEmail(addBookingDTO.getEmail());
-        bookingEntity.setReservationDate(addBookingDTO.getReservationDate());
-        bookingEntity.setReservationTime(addBookingDTO.getReservationTime());
+        bookingEntity.setReservationDateTime(addBookingDTO.getReservationDateTime());
         bookingEntity.setService(addBookingDTO.getService());
 
         return bookingEntity;

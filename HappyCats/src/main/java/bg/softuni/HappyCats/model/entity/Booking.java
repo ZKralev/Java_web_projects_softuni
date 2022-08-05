@@ -21,11 +21,8 @@ public class Booking {
 
     private String email;
 
-    @Column(name = "reservation_date")
-    private Date reservationDate;
-
-    @Column(name = "reservation_time")
-    private LocalDateTime reservationTime;
+    @Column(name = "reservation_date_time")
+    private LocalDateTime reservationDateTime;
 
     @Enumerated(EnumType.STRING)
     private Service service;
@@ -50,28 +47,24 @@ public class Booking {
         this.email = email;
     }
 
-    public Date getReservationDate() {
-        return reservationDate;
+    public LocalDateTime getReservationDateTime() {
+        return reservationDateTime;
     }
 
-    public void setReservationDate(Date reservationDate) {
-        this.reservationDate = reservationDate;
+    public void setReservationDateTime(LocalDateTime reservationDateTime) {
+        this.reservationDateTime = reservationDateTime;
     }
 
-    public LocalDateTime getReservationTime() {
-        return reservationTime;
-    }
-
-    public void setReservationTime(String reservationTime) {
-        this.reservationTime = LocalDateTime.parse(reservationTime);
+    public void setService(Service service) {
+        this.service = service;
     }
 
     public Service getService() {
         return service;
     }
 
-    public void setService(String service) {
-        this.service = valueOf(service);
+    public void setService(int service) {
+        this.service = Service.values()[service];
     }
 
     public Long getId() {

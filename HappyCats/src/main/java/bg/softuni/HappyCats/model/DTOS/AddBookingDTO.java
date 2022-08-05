@@ -1,8 +1,15 @@
 package bg.softuni.HappyCats.model.DTOS;
 
 import bg.softuni.HappyCats.model.enums.Service;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.PastOrPresent;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
@@ -12,11 +19,11 @@ public class AddBookingDTO {
 
     private String email;
 
-    private Date reservationDate;
+    @FutureOrPresent
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime reservationDateTime;
 
-    private String reservationTime;
-
-    private String service;
+    private int service;
 
     public AddBookingDTO() {
     }
@@ -39,29 +46,19 @@ public class AddBookingDTO {
         return this;
     }
 
-    public Date getReservationDate() {
-        return reservationDate;
+    public LocalDateTime getReservationDateTime() {
+        return reservationDateTime;
     }
 
-    public AddBookingDTO setReservationDate(Date reservationDate) {
-        this.reservationDate = reservationDate;
-        return this;
+    public void setReservationDateTime(LocalDateTime reservationDateTime) {
+        this.reservationDateTime = reservationDateTime;
     }
 
-    public String getReservationTime() {
-        return reservationTime;
-    }
-
-    public AddBookingDTO setReservationTime(String reservationTime) {
-        this.reservationTime = reservationTime;
-        return this;
-    }
-
-    public String getService() {
+    public int getService() {
         return service;
     }
 
-    public AddBookingDTO setService(String service) {
+    public AddBookingDTO setService(int service) {
         this.service = service;
         return this;
     }

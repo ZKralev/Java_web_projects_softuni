@@ -27,8 +27,6 @@ public class CommentService {
 
     public void addComment(AddCommentDTO addCommentDTO, HappyPetsUserDetailsService userDetails) {
         Comment newComment = commentMapper.commentMapperDTO(addCommentDTO);
-        Optional<User> user = userRepository.findByUsername(addCommentDTO.getUsername());
-        newComment.setAuthor(user.get());
         System.out.println(newComment.toString());
         commentRepository.save(newComment);
 

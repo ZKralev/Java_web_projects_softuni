@@ -34,7 +34,8 @@ public class Comment {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated() {
+        System.out.println(LocalDateTime.now());
         this.created = LocalDateTime.now();
     }
 

@@ -19,6 +19,9 @@ public class CommentMapperImpl implements CommentMapper {
 
     private UserRepository userRepository;
 
+    public CommentMapperImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public Comment commentMapperDTO(AddCommentDTO addCommentDTO) {
@@ -26,11 +29,12 @@ public class CommentMapperImpl implements CommentMapper {
             return null;
         }
 
-        Comment commentEntitu = new Comment();
-        Optional<User> user = userRepository.findByUsername(addCommentDTO.getUsername());
-        commentEntitu.setAuthor(user.get());
-        commentEntitu.setMessage(addCommentDTO.getMessage());
+        Comment commentEntity = new Comment();
+        Optional<User> user = userRepository.findByEmail(addCommentDTO.getEmail());
+        commentEntity.setAuthor(user.get());
+        commentEntity.setMessage(addCommentDTO.getMessage());
+        commentEntity.setCreated();
 
-        return commentEntitu;
+        return commentEntity;
     }
 }

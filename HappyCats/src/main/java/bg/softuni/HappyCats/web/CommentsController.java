@@ -30,7 +30,7 @@ public class CommentsController {
         return "add-comment";
     }
 
-    @PostMapping("/")
+    @PostMapping("/comment")
     public String addComment(@Valid AddCommentDTO addCommentDTO,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes,
